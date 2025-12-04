@@ -36,9 +36,12 @@ namespace MauiIcons.Icons
         /// Gets the glyph (Unicode character) for a given icon name.
         /// </summary>
         /// <param name="iconName">The name of the icon</param>
-        /// <returns>The Unicode character for the icon, or null if not found</returns>
+        /// <returns>The Unicode character for the icon, or null if not found or if iconName is null/empty</returns>
         public static string GetGlyph(string iconName)
         {
+            if (string.IsNullOrEmpty(iconName))
+                return null;
+                
             return Glyphs.TryGetValue(iconName, out var glyph) ? glyph : null;
         }
     }

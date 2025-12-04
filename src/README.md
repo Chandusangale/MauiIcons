@@ -42,10 +42,22 @@ string searchIcon = MaterialIconsRound.Glyphs["Search"];
 ### In XAML
 
 ```xml
+<!-- Option 1: Using the FontAlias constant -->
 <Label 
-    Text="{x:Static local:MaterialIconsRound.Glyphs[Home]}"
+    Text="&#xe88a;" 
+    FontFamily="{x:Static local:MaterialIconsRound.FontAlias}"
+    FontSize="24" />
+
+<!-- Option 2: Set text in code-behind using GetGlyph() -->
+<Label 
+    x:Name="MyIcon"
     FontFamily="MaterialIconsRound"
     FontSize="24" />
+```
+
+For the second option, set the text in code-behind:
+```csharp
+MyIcon.Text = MaterialIconsRound.GetGlyph("Home");
 ```
 
 ### In C#
