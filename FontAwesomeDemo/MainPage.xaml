@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:FontAwesomeDemo"
+            x:Class="FontAwesomeDemo.MainPage">
+    
+    <!-- Tab 1: Controls Demo -->
+    <ContentPage Title="Controls" IconImageSource="dotnet_bot.png">
+        <ContentPage.ToolbarItems>
+            <ToolbarItem Order="Primary">
+                <ToolbarItem.IconImageSource>
+                    <FontImageSource FontFamily="FontAwesomeSolid" 
+                                   Glyph="{x:Static local:FontAwesomeIcons.Settings}" 
+                                   Color="White" />
+                </ToolbarItem.IconImageSource>
+            </ToolbarItem>
+            <ToolbarItem Order="Primary">
+                <ToolbarItem.IconImageSource>
+                    <FontImageSource FontFamily="FontAwesomeSolid" 
+                                   Glyph="{x:Static local:FontAwesomeIcons.Bell}" 
+                                   Color="White" />
+                </ToolbarItem.IconImageSource>
+            </ToolbarItem>
+        </ContentPage.ToolbarItems>
+        
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="20">
+                
+                <!-- Title -->
+                <Label Text="FontAwesome Icons Demo"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Margin="0,10,0,20"/>
+                
+                <!-- Label with Icon -->
+                <Frame BorderColor="LightGray" Padding="10" CornerRadius="8">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Label with Icon:" FontAttributes="Bold" FontSize="16"/>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label FontFamily="FontAwesomeSolid" 
+                                   Text="{x:Static local:FontAwesomeIcons.Home}"
+                                   FontSize="24"
+                                   TextColor="#512BD4"/>
+                            <Label Text="Home" VerticalOptions="Center" FontSize="18"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+                
+                <!-- Button with Icon -->
+                <Frame BorderColor="LightGray" Padding="10" CornerRadius="8">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Button with Icon:" FontAttributes="Bold" FontSize="16"/>
+                        <Button x:Name="ButtonWithIcon"
+                                BackgroundColor="#512BD4"
+                                TextColor="White"
+                                Clicked="OnButtonClicked">
+                            <Button.ImageSource>
+                                <FontImageSource FontFamily="FontAwesomeSolid" 
+                                               Glyph="{x:Static local:FontAwesomeIcons.Heart}" 
+                                               Color="White" />
+                            </Button.ImageSource>
+                            <Button.Text>Like</Button.Text>
+                        </Button>
+                    </VerticalStackLayout>
+                </Frame>
+                
+                <!-- ImageButton -->
+                <Frame BorderColor="LightGray" Padding="10" CornerRadius="8">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="ImageButton with Icon:" FontAttributes="Bold" FontSize="16"/>
+                        <ImageButton BackgroundColor="#512BD4"
+                                    CornerRadius="8"
+                                    HeightRequest="50"
+                                    WidthRequest="50"
+                                    Padding="10"
+                                    Clicked="OnImageButtonClicked">
+                            <ImageButton.Source>
+                                <FontImageSource FontFamily="FontAwesomeSolid" 
+                                               Glyph="{x:Static local:FontAwesomeIcons.Camera}" 
+                                               Color="White" />
+                            </ImageButton.Source>
+                        </ImageButton>
+                    </VerticalStackLayout>
+                </Frame>
+                
+                <!-- Multiple Icon Buttons -->
+                <Frame BorderColor="LightGray" Padding="10" CornerRadius="8">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Icon Buttons Collection:" FontAttributes="Bold" FontSize="16"/>
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                            <Button BackgroundColor="#28A745" TextColor="White" WidthRequest="80">
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="FontAwesomeSolid" 
+                                                   Glyph="{x:Static local:FontAwesomeIcons.Check}" 
+                                                   Color="White" />
+                                </Button.ImageSource>
+                                <Button.Text>Save</Button.Text>
+                            </Button>
+                            <Button BackgroundColor="#DC3545" TextColor="White" WidthRequest="80">
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="FontAwesomeSolid" 
+                                                   Glyph="{x:Static local:FontAwesomeIcons.Trash}" 
+                                                   Color="White" />
+                                </Button.ImageSource>
+                                <Button.Text>Delete</Button.Text>
+                            </Button>
+                            <Button BackgroundColor="#FFC107" TextColor="White" WidthRequest="80">
+                                <Button.ImageSource>
+                                    <FontImageSource FontFamily="FontAwesomeSolid" 
+                                                   Glyph="{x:Static local:FontAwesomeIcons.Edit}" 
+                                                   Color="White" />
+                                </Button.ImageSource>
+                                <Button.Text>Edit</Button.Text>
+                            </Button>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage>
+    
+    <!-- Tab 2: Icons Grid -->
+    <ContentPage Title="Icons" IconImageSource="dotnet_bot.png">
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="15">
+                <Label Text="Icon Gallery"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Margin="0,10,0,10"/>
+                
+                <CollectionView x:Name="IconsCollection">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="3"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="local:IconItem">
+                            <Frame BorderColor="LightGray" 
+                                   Padding="10" 
+                                   Margin="5"
+                                   CornerRadius="8"
+                                   BackgroundColor="White">
+                                <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                                    <Label FontFamily="{Binding FontFamily}"
+                                           Text="{Binding Icon}"
+                                           FontSize="32"
+                                           TextColor="#512BD4"
+                                           HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Name}"
+                                           FontSize="12"
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage>
+    
+</TabbedPage>
